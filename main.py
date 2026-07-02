@@ -35,7 +35,7 @@ def remove_outliers_iqr(df: pd.DataFrame, columns: list) -> pd.DataFrame:
     return df_cleaned
 
 def main():
-    print("🚀 Starting ML Pipeline...")
+    print("Starting ML Pipeline...")
     
     # 1. Load Data
     # Note: Use relative paths in GitHub repos, not hardcoded 'C:/...' paths
@@ -43,11 +43,11 @@ def main():
     try:
         df = pd.read_csv(data_path)
     except FileNotFoundError:
-        print(f"❌ Error: Dataset '{data_path}' not found. Please ensure it is in the correct directory.")
+        print(f"Error: Dataset '{data_path}' not found. Please ensure it is in the correct directory.")
         return
 
     # 2. Preprocessing & Outlier Removal
-    print("🧹 Cleaning data and handling outliers...")
+    print("Cleaning data and handling outliers...")
     feature_cols = [col for col in df.columns if col not in ['Unnamed: 0', 'studentID', 'averagedCorrectness', 'averagedTimespent']]
     df = remove_outliers_iqr(df, feature_cols)
 
@@ -55,17 +55,17 @@ def main():
     X = df[feature_cols]
     y = df['averagedCorrectness']
 
-    # 3. Train/Test Split (CRITICAL: Must happen BEFORE scaling to prevent data leakage)
-    print("🪓 Splitting data into train and test sets...")
+    # 3. Train/Test Split
+    print("Splitting data into train and test sets...")
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
     # 4. Feature Scaling
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test) # Transform only!
+    X_test_scaled = scaler.transform(X_test)
 
     # 5. Feature Engineering: K-Means Clustering (adding cluster as a feature)
-    print("🧬 Engineering features using K-Means Clustering...")
+    print("Engineering features using K-Means Clustering...")
     kmeans = KMeans(n_clusters=2, random_state=42)
     
     # Fit on train, predict on train and test
@@ -75,8 +75,8 @@ def main():
     X_train_final = np.hstack((X_train_scaled, train_clusters))
     X_test_final = np.hstack((X_test_scaled, test_clusters))
 
-    # 6. Model Dictionary (Clean way to evaluate multiple models)
-    print("🤖 Training and evaluating models...")
+    # 6. Model Dictionary
+    print("Training and evaluating models...")
     models = {
         "Linear Regression": LinearRegression(),
         "Ridge": Ridge(alpha=1.0),
@@ -97,14 +97,14 @@ def main():
         
         results.append({"Model": name, "R2 Score": round(r2, 4), "RMSE": round(rmse, 4)})
 
-    # Print a beautiful leaderboard
+    # Print leaderboard
     results_df = pd.DataFrame(results).sort_values(by="R2 Score", ascending=False)
     
-    print("\n🏆 Model Performance Leaderboard:")
+    print("\n Model Performance Leaderboard:")
     print("-" * 50)
     print(results_df.to_string(index=False))
     print("-" * 50)
-    print("✅ Pipeline execution complete.")
+    print("Pipeline execution complete.")
 
 if __name__ == "__main__":
     main()
