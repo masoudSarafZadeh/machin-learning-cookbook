@@ -18,7 +18,7 @@ An end-to-end, production-grade machine learning pipeline designed to predict st
 ## Project Architecture
 
 ```text
-student-performance-pipeline/
+machine-learning-showcase/
 ├── assets/                     # Automatically generated analytical visualizations
 │   ├── correlation_matrix.png
 │   └── outlier_analysis.png
