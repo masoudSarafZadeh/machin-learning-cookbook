@@ -31,8 +31,8 @@ student-performance-pipeline/
 ## Installation & Environment Setup
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/masoudSarafZadeh/machin-learning-cookbook.git
-cd machin-learning-cookbook
+git clone https://github.com/masoudSarafZadeh/machine-learning-showcase.git
+cd machine-learning-showcase
 ```
 2. **Configure Dependencies:**
 Isolate this pipeline inside a clean local virtual environment:
