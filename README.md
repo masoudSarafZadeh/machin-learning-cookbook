@@ -1,4 +1,4 @@
-# Student Performance Predictive Pipeline & Advanced Ensemble Optimization 🚀📊
+# Student Performance Predictive Pipeline & Advanced Ensemble Optimization 
 **ALIN Datase:** https://ieee-dataport.org/documents/alin-open-dataset-math-adaptive-learning
 An end-to-end, production-grade machine learning pipeline designed to predict student performance (`averagedCorrectness`) from continuous behavioral metrics. This repository showcases the transition from thorough exploratory analysis and statistical data cleaning to complex unsupervised feature synthesis, dimensionality reduction, and hyperparameter optimization.
 
